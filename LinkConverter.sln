@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.31903.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkConverter.Webapi", "LinkConverter.Webapi\LinkConverter.Webapi.csproj", "{1BB442EE-9BA4-4D07-BBAF-38AA66245E04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinkConverter.Webapi", "LinkConverter.Webapi\LinkConverter.Webapi.csproj", "{1BB442EE-9BA4-4D07-BBAF-38AA66245E04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkConverter.Tests", "LinkConverter.Tests\LinkConverter.Tests.csproj", "{F06754D8-8927-45B9-9747-6EC4659C9703}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinkConverter.Tests", "LinkConverter.Tests\LinkConverter.Tests.csproj", "{F06754D8-8927-45B9-9747-6EC4659C9703}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkConverter.Domain", "LinkConverter.Domain\LinkConverter.Domain.csproj", "{1869E4E1-99A9-4722-8D23-F7C61FAB2D37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinkConverter.Domain", "LinkConverter.Domain\LinkConverter.Domain.csproj", "{1869E4E1-99A9-4722-8D23-F7C61FAB2D37}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkConverter.Service", "LinkConverter.Service\LinkConverter.Service.csproj", "{BCFF1BA8-2152-484A-B4AC-A65382C41FF8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinkConverter.Service", "LinkConverter.Service\LinkConverter.Service.csproj", "{BCFF1BA8-2152-484A-B4AC-A65382C41FF8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinkConverter.DataAccess.Postgresql", "LinkConverter.DataAccess.Postgresql\LinkConverter.DataAccess.Postgresql.csproj", "{9A4C5259-8196-4ABA-A5BB-716D05ED540E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinkConverter.Repository.Postgresql", "LinkConverter.DataAccess.Postgresql\LinkConverter.Repository.Postgresql.csproj", "{9A4C5259-8196-4ABA-A5BB-716D05ED540E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
