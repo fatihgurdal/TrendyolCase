@@ -2,9 +2,12 @@
 using LinkConverter.Repository.Postgresql.Mapping;
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.Extensions.Configuration;
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace LinkConverter.Repository.Postgresql.Context
@@ -26,7 +29,10 @@ namespace LinkConverter.Repository.Postgresql.Context
         {
             modelBuilder.ApplyConfiguration(new TestEntityMapping());
 
-        } 
+        }
         #endregion
     }
+
+
+
 }
