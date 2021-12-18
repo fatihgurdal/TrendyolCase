@@ -1,15 +1,18 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
   </ItemGroup>
+
   <ItemGroup>
-    <Folder Include="Enums\" />
+    <ProjectReference Include="..\LinkConverter.DataAccess.Postgresql\LinkConverter.Repository.Postgresql.csproj" />
+    <ProjectReference Include="..\LinkConverter.Domain\LinkConverter.Domain.csproj" />
+    <ProjectReference Include="..\LinkConverter.Service\LinkConverter.Service.csproj" />
   </ItemGroup>
 
 </Project>

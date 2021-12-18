@@ -13,6 +13,7 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LinkConverter.Application\LinkConverter.Application.csproj" />
     <ProjectReference Include="..\LinkConverter.Domain\LinkConverter.Domain.csproj" />
   </ItemGroup>
 

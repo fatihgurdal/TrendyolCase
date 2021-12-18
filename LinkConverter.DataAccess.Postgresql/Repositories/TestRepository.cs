@@ -11,7 +11,7 @@ namespace LinkConverter.Repository.Postgresql.Repositories
 {
     public class TestRepository : RepositoryBase<TestEntity, int>, ITestRepository
     {
-        internal TestRepository(LinkConverterContext dbContext) : base(dbContext)
+        public TestRepository(LinkConverterContext dbContext) : base(dbContext)
         {
         }
     }

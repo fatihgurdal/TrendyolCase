@@ -1,6 +1,9 @@
+using LinkConverter.Application;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
@@ -14,6 +17,13 @@ namespace LinkConverter.Webapi
 {
     public class Startup
     {
+        private readonly IConfiguration Configuration;
+
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
@@ -33,6 +43,9 @@ namespace LinkConverter.Webapi
                     },
                 });
             });
+
+            //Dependency Injection 
+            services.AddDbContextServices(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -58,5 +71,6 @@ namespace LinkConverter.Webapi
             });
 
         }
+
     }
 }

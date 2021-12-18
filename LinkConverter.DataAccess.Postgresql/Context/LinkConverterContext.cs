@@ -12,7 +12,7 @@ using System.Text;
 
 namespace LinkConverter.Repository.Postgresql.Context
 {
-    internal class LinkConverterContext : DbContext
+    public class LinkConverterContext : DbContext
     {
         #region Ctor
         public LinkConverterContext(DbContextOptions<LinkConverterContext> options) : base(options)

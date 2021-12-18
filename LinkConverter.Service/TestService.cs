@@ -31,7 +31,7 @@ namespace LinkConverter.Service
         {
             var entities = Repository.Get(x => true);
 
-            return string.Join(", ", entities.Select(x => $"Name:{x.Name}, Age:{x.Age}"));
+            return string.Join(", ", entities.Select(x => $"Name:{x.Name} Age:{x.Age}"));
         }
     }
 }
