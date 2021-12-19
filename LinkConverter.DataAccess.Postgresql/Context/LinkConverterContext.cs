@@ -22,12 +22,14 @@ namespace LinkConverter.Repository.Postgresql.Context
 
         #region Tables
         public DbSet<TestEntity> Tests { get; set; }
+        public DbSet<LinkConverterHistory> LinkConverterHistories { get; set; }
         #endregion
 
         #region OnModelCreating
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new TestEntityMapping());
+            modelBuilder.ApplyConfiguration(new LinkConverterHistoryMapping());
 
         }
         #endregion

@@ -20,9 +20,9 @@ namespace LinkConverter.Repository.Postgresql.Repositories
         {
             return Add(new LinkConverterHistory()
             {
-                Request = request,
-                Response = response,
-                Type = linkConvertType,
+                RequestLink = request,
+                ResponseLink = response,
+                ConvertType = linkConvertType,
                 Date = DateTime.Now,
             });
         }

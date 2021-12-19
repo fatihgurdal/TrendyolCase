@@ -10,9 +10,9 @@ namespace LinkConverter.Domain.DBEntity
     public class LinkConverterHistory : IDBEntity<int>
     {
         public int Id { get; set; }
-        public LinkConvertType Type { get; set; }
-        public string Request { get; set; }
-        public string Response { get; set; }
+        public LinkConvertType ConvertType { get; set; }
+        public string RequestLink { get; set; }
+        public string ResponseLink { get; set; }
         public DateTimeOffset Date { get; set; }
     }
 }
