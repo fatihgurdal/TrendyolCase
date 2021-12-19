@@ -32,6 +32,7 @@ namespace LinkConverter.Application
 
             #region LinkConverter
             services.AddScoped<ILinkConverterService, LinkConverterService>();
+            services.AddScoped<ILinkConverterHistoryRepository, LinkConverterHistoryRepository>();
             //Validation
             services.AddTransient<IValidator<DeepLinkToWebUrlRequest>, DeepLinkToWebUrlRequestValidator>();
             services.AddTransient<IValidator<WebUrlToDeepLinkRequest>, WebUrlToDeepLinkRequestValidator>();

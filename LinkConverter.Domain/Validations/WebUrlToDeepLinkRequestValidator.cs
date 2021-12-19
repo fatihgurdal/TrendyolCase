@@ -2,10 +2,7 @@
 using FluentValidation.Results;
 
 using LinkConverter.Domain.Models.Request;
-
-using System;
-using System.Collections.Generic;
-using System.Text;
+using LinkConverter.Domain.Extensions;
 
 namespace LinkConverter.Domain.Validations
 {
@@ -17,7 +14,8 @@ namespace LinkConverter.Domain.Validations
 
             When(x => x != null, () =>
             {
-                RuleFor(x => x.Url).Must(x => x.StartsWith("ty://?")).WithMessage("Invalid Trendyol depp link");
+                RuleFor(x => x.Url).Must(x => x.IsUrl(true)).WithMessage("Invalid url");
+                RuleFor(x => x.Url).Must(x => x.StartsWith("https://www.trendyol.com")).WithMessage("Invalid Trendyol url");
             });
         }
 
