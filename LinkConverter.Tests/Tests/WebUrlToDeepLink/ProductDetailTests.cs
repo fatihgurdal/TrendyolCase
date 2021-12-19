@@ -1,19 +1,18 @@
-using LinkConverter.Domain.Service;
-
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Threading.Tasks;
 
 using Xunit;
-using Shouldly;
 
-namespace LinkConverter.Tests
+namespace LinkConverter.Tests.Tests.WebUrlToDeepLink
 {
     [Collection("Startup collection")]
-    public class TestEntityTests
+    public class ProductDetailTests
     {
         private StartupFixture Fixture { get; }
 
-        public TestEntityTests(StartupFixture fixture)
+        public ProductDetailTests(StartupFixture fixture)
         {
             Fixture = fixture;
         }
@@ -24,14 +23,6 @@ namespace LinkConverter.Tests
 
             var id = Fixture.TestService.Add("fatih", 30);
             id.ShouldBeGreaterThan(0);
-        }
-
-        [Fact]
-        public async Task GetAll()
-        {
-
-            var texts = Fixture.TestService.GetAll();
-            texts.ShouldNotBeNullOrWhiteSpace();
         }
     }
 }

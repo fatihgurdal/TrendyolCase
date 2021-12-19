@@ -25,11 +25,13 @@ namespace LinkConverter.Webapi
     {
         private readonly IConfiguration Configuration;
         private readonly IWebHostEnvironment Environment;
+        private readonly ILogger logger;
 
-        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment, ILogger logger)
         {
             Configuration = configuration;
             this.Environment = environment;
+            this.logger = logger;
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -54,7 +56,7 @@ namespace LinkConverter.Webapi
 
             services.AddMvc(options =>
             {
-                options.Filters.Add(new ErrorFilter(this.Environment));
+                options.Filters.Add(new ErrorFilter(this.Environment, logger));
                 options.Filters.Add(new ValidationFilter());
 
                 //Swagger ProducesResponseType
@@ -73,13 +75,12 @@ namespace LinkConverter.Webapi
             services.AddDbContextServices(Configuration);
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            loggerFactory.LogInformation
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>

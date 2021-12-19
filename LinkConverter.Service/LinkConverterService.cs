@@ -1,6 +1,7 @@
 ﻿using LinkConverter.Domain.Enums;
 using LinkConverter.Domain.Exception;
 using LinkConverter.Domain.Extensions;
+using LinkConverter.Domain.Models.Dto;
 using LinkConverter.Domain.Models.Response;
 using LinkConverter.Domain.Repository;
 using LinkConverter.Domain.Service;
@@ -44,7 +45,7 @@ namespace LinkConverter.Service
 
             if (!string.IsNullOrWhiteSpace(response))
             {
-                ConverterHistoryRepository.AddHistory(url, response, Domain.Enums.LinkConvertType.WebUrlToDeepLink);
+                ConverterHistoryRepository.AddHistory(new AddHistoryDto(url, response, Domain.Enums.LinkConvertType.WebUrlToDeepLink));
                 return response;
             }
             else throw new BadRequestException("Deep link convert fail.", "", ErrorType.Critical);
@@ -73,7 +74,7 @@ namespace LinkConverter.Service
 
             if (!string.IsNullOrWhiteSpace(response))
             {
-                ConverterHistoryRepository.AddHistory(deeplink, response, Domain.Enums.LinkConvertType.DeepLinkToWebUrl);
+                ConverterHistoryRepository.AddHistory(new AddHistoryDto(deeplink, response, Domain.Enums.LinkConvertType.DeepLinkToWebUrl));
                 return response;
             }
             else throw new BadRequestException("Deep link convert fail.", "", ErrorType.Critical);
