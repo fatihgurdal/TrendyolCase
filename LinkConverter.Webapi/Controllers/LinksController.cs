@@ -1,5 +1,6 @@
 ﻿using LinkConverter.Domain.Enums;
 using LinkConverter.Domain.Models.Request;
+using LinkConverter.Domain.Models.Response;
 using LinkConverter.Domain.Models.TestEntity;
 using LinkConverter.Domain.Service;
 
@@ -7,6 +8,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace LinkConverter.Webapi.Controllers
 {
@@ -104,7 +107,21 @@ namespace LinkConverter.Webapi.Controllers
         public ActionResult<string> DeepLinkToWebUrl([FromServices] ILinkConverterService service, [FromRoute] string deeplink)
         {
             return service.DeepLinkToWebUrl(deeplink);
-        } 
+        }
+        #endregion
+
+        #region History
+        /// <summary>
+        /// Arayüzdende eklenen verilerin görüntülenmesi için eklenmiştir.
+        /// </summary>
+        /// <param name="service"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [ActionName("GetAllHistory")]
+        public ActionResult<List<LinkConvertHistoryResponse>> GetAllHistory([FromServices] ILinkConverterService service)
+        {
+            return service.GetHistories().ToList();
+        }
         #endregion
     }
 }

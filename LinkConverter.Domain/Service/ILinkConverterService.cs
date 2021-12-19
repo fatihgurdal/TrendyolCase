@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LinkConverter.Domain.Models.Response;
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,5 +10,6 @@ namespace LinkConverter.Domain.Service
     {
         string WebUrlToDeepLink(string url);
         string DeepLinkToWebUrl(string deeplink);
+        IEnumerable<LinkConvertHistoryResponse> GetHistories();
     }
 }

@@ -1,6 +1,7 @@
 ﻿using LinkConverter.Domain.Enums;
 using LinkConverter.Domain.Exception;
 using LinkConverter.Domain.Extensions;
+using LinkConverter.Domain.Models.Response;
 using LinkConverter.Domain.Repository;
 using LinkConverter.Domain.Service;
 using LinkConverter.Service.Helpers;
@@ -79,7 +80,12 @@ namespace LinkConverter.Service
 
         }
 
+        public IEnumerable<LinkConvertHistoryResponse> GetHistories()
+        {
+            return ConverterHistoryRepository.Get(x => true).Select(x => new LinkConvertHistoryResponse(x));
+        }
 
+        #region Private
         private PageType GetWebUrlPageType(string url)
         {
             if (ProductWebLinkHelper.IsProductDetail(url))
@@ -106,5 +112,6 @@ namespace LinkConverter.Service
 
 
         }
+        #endregion
     }
 }
