@@ -6,7 +6,7 @@ namespace LinkConverter.Service.Converters
 {
     internal class SearchWebUrlConverter : Domain.Abstract.LinkConverter
     {
-        private const string searchPattern = @"sr\?q=(?<Query>[^:\/\n=&]+)$";
+        private const string searchPattern = @"[?&]q=(?<Query>[^&]+).*$";
 
         public SearchWebUrlConverter(Domain.Abstract.LinkConverter nextHandler) : base(nextHandler)
         {

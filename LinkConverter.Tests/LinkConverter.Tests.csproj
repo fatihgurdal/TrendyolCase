@@ -13,6 +13,8 @@
     <None Remove="Tests\WebUrlToDeepLink\TestData\Content_Boutique_Merchant_Throw_Data.json" />
     <None Remove="Tests\WebUrlToDeepLink\TestData\Content_Fail_Data.json" />
     <None Remove="Tests\WebUrlToDeepLink\TestData\Content_Success_Data.json" />
+    <None Remove="Tests\WebUrlToDeepLink\TestData\Search_Success_Data.json" />
+    <None Remove="Tests\WebUrlToDeepLink\TestData\Search_Success_Fail.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +33,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Tests\WebUrlToDeepLink\TestData\Content_Fail_Data.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\WebUrlToDeepLink\TestData\Search_Success_Fail.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\WebUrlToDeepLink\TestData\Search_Success_Data.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Tests\WebUrlToDeepLink\TestData\Content_Success_Data.json">

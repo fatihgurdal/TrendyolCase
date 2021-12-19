@@ -1,0 +1,22 @@
+[
+  {
+    "RequestUrl": "https://www.trendyol.com/sr?q=laptop&qt=laptop&st=laptop&os=1",
+    "ResponseUrl": "ty://?Page=Search&Query=laptop"
+  },
+  {
+    "RequestUrl": "https://www.trendyol.com/sr?q=%C3%A7aydanl%C4%B1k",
+    "ResponseUrl": "ty://?Page=Search&Query=%C3%A7aydanl%C4%B1k"
+  },
+  {
+    "RequestUrl": "https://www.trendyol.com/sr?q=%C3%BCt%C3%BC",
+    "ResponseUrl": "ty://?Page=Search&Query=%C3%BCt%C3%BC"
+  },
+  {
+    "RequestUrl": "https://www.trendyol.com/sr?q=%C5%9Femsiye&qt=%C5%9Femsiye&st=%C5%9Femsiye&os=1",
+    "ResponseUrl": "ty://?Page=Search&Query=%C5%9Femsiye"
+  },
+  {
+    "RequestUrl": "https://www.trendyol.com/sr?q=a%C4%9Fustos&qt=a%C4%9Fustos&st=a%C4%9Fustos&os=1",
+    "ResponseUrl": "ty://?Page=Search&Query=a%C4%9Fustos"
+  }
+]
