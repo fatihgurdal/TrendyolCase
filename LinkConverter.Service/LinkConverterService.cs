@@ -50,7 +50,7 @@ namespace LinkConverter.Service
                     response = ProductDeepLinkConverter.GenerateDeepLink(deeplink);
                     break;
                 case PageType.Search:
-                    response = SearchDeepLinkHelper.GenerateDeepLink(deeplink);
+                    response = SearchDeepLinkConverter.GenerateDeepLink(deeplink);
                     break;
                 case PageType.Home:
                 default:

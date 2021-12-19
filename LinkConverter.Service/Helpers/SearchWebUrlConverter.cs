@@ -20,7 +20,7 @@ namespace LinkConverter.Service.Helpers
         {
             if (IsSearch(url))
             {
-                return convert(url);
+                return Convert(url);
             }
             else if (NextHandler != null)
             {
@@ -30,9 +30,9 @@ namespace LinkConverter.Service.Helpers
         }
 
         #region Private
-        private string convert(string url)
+        private string Convert(string url)
         {
-            var query = getQValue(url);
+            var query = GetQValue(url);
             //var query = System.Web.HttpUtility.UrlDecode(getQValue(url));
 
             return $"{Domain.Constant.UrlConsts.DeepLinkPrefix}Page=Search&Query={query}";
@@ -41,7 +41,7 @@ namespace LinkConverter.Service.Helpers
         {
             return url.GetRegexMatch(searchPattern).Any();
         }
-        private string getQValue(string url)
+        private string GetQValue(string url)
         {
             return base.GetUrlValueWithRegex(url, searchPattern, "Query");
         }

@@ -1,11 +1,8 @@
 ﻿using LinkConverter.Domain.Exception;
-using LinkConverter.Domain.Extensions;
 using LinkConverter.Domain.Helper;
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace LinkConverter.Service.Helpers
 {
@@ -23,7 +20,7 @@ namespace LinkConverter.Service.Helpers
         {
             if (IsProductDetail(url))
             {
-                return convert(url);
+                return Convert(url);
             }
             else if (NextHandler != null)
             {
@@ -34,17 +31,17 @@ namespace LinkConverter.Service.Helpers
 
 
         #region Private
-        private string convert(string deeplink)
+        private string Convert(string deeplink)
         {
             var queryParameters = new List<string>();
 
-            var productId = getProductId(deeplink);
+            var productId = GetProductId(deeplink);
             if (string.IsNullOrEmpty(productId)) throw new NotFoundExcepiton("Not found product"); //Ürün numarası zorunlu olduğu için
 
-            var boutiqueId = getCampaignId(deeplink);
+            var boutiqueId = GetCampaignId(deeplink);
             if (!string.IsNullOrEmpty(boutiqueId)) queryParameters.Add($"boutiqueId={boutiqueId}");
 
-            var merchantId = getMerchantId(deeplink);
+            var merchantId = GetMerchantId(deeplink);
             if (!string.IsNullOrEmpty(merchantId)) queryParameters.Add($"merchantId={merchantId}");
 
             return $"{productPrefix}{productId}?{string.Join('&', queryParameters)}";
@@ -54,17 +51,17 @@ namespace LinkConverter.Service.Helpers
             var pageName = base.GetUrlValueWithRegex(deeplink, Domain.Constant.UrlConsts.PagePattern, "PageValue");
             return pageName.Equals("Product", StringComparison.OrdinalIgnoreCase);
         }
-        private string getProductId(string deeplink)
+        private string GetProductId(string deeplink)
         {
             return base.GetUrlValueWithRegex(deeplink, productPattern, "ContentValue");
         }
 
-        private string getCampaignId(string deeplink)
+        private string GetCampaignId(string deeplink)
         {
             return base.GetUrlValueWithRegex(deeplink, campaignPattern, "CampaignValue");
         }
 
-        private string getMerchantId(string deeplink)
+        private string GetMerchantId(string deeplink)
         {
             return base.GetUrlValueWithRegex(deeplink, merchantPattern, "MerchantValue");
         }

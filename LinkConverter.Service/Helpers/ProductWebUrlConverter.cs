@@ -9,7 +9,7 @@ namespace LinkConverter.Service.Helpers
         #region Consts
         private const string productPattern = @"(?:-p-)(?<ProductValue>[\d^]+)";
         private const string boutiquePattern = @"(?:boutiqueId=)(?<BoutiqueValue>[\d^]+)";
-        private const string merchanPattern = @"(?:merchantId=)(?<MerchantValue>[\d^]+)"; 
+        private const string merchanPattern = @"(?:merchantId=)(?<MerchantValue>[\d^]+)";
         #endregion
 
         public ProductWebUrlConverter(LinkConverterHandler nextHandler) : base(nextHandler)
@@ -20,7 +20,7 @@ namespace LinkConverter.Service.Helpers
         {
             if (IsProductDetail(url))
             {
-                return convert(url);
+                return Convert(url);
             }
             else if (NextHandler != null)
             {
@@ -30,37 +30,37 @@ namespace LinkConverter.Service.Helpers
         }
 
         #region Private
-        private string convert(string url)
+        private string Convert(string url)
         {
             var queryParameters = new List<string>();
 
-            var productId = getProductId(url);
+            var productId = GetProductId(url);
             if (!string.IsNullOrEmpty(productId)) queryParameters.Add($"Page=Product&ContentId={productId}");
 
-            var boutiqueId = getBoutiqueId(url);
+            var boutiqueId = GetBoutiqueId(url);
             if (!string.IsNullOrEmpty(boutiqueId)) queryParameters.Add($"CampaignId={boutiqueId}");
 
-            var merchantId = getMerchantId(url);
+            var merchantId = GetMerchantId(url);
             if (!string.IsNullOrEmpty(merchantId)) queryParameters.Add($"MerchantId={merchantId}");
 
             return $"{Domain.Constant.UrlConsts.DeepLinkPrefix}{string.Join('&', queryParameters)}";
         }
         private bool IsProductDetail(string url)
         {
-            return url.Contains("-p-") && !string.IsNullOrEmpty(getProductId(url));
+            return url.Contains("-p-") && !string.IsNullOrEmpty(GetProductId(url));
         }
 
-        private string getProductId(string url)
+        private string GetProductId(string url)
         {
             return base.GetUrlValueWithRegex(url, productPattern, "ProductValue");
         }
 
-        private string getBoutiqueId(string url)
+        private string GetBoutiqueId(string url)
         {
             return base.GetUrlValueWithRegex(url, boutiquePattern, "BoutiqueValue");
         }
 
-        private string getMerchantId(string url)
+        private string GetMerchantId(string url)
         {
             return base.GetUrlValueWithRegex(url, merchanPattern, "MerchantValue");
         }
