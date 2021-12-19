@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 using System;
 
@@ -13,10 +14,12 @@ namespace LinkConverter.Webapi.Filters
     public class ErrorFilter : ExceptionFilterAttribute
     {
         readonly IWebHostEnvironment env;
+        private readonly ILogger logger;
 
-        public ErrorFilter(IWebHostEnvironment Env)
+        public ErrorFilter(IWebHostEnvironment Env, ILogger logger)
         {
-            env = Env;
+            this.env = Env;
+            this.logger = logger;
         }
         public override void OnException(ExceptionContext context)
         {
@@ -32,6 +35,7 @@ namespace LinkConverter.Webapi.Filters
 
                 if (context.Exception is NotFoundExcepiton) context.HttpContext.Response.StatusCode = 404;
                 if (context.Exception is BadRequestException) context.HttpContext.Response.StatusCode = 400;
+                logger.LogError(ex.Message, ex.Detail);
             }
             else
             {
@@ -43,10 +47,8 @@ namespace LinkConverter.Webapi.Filters
                 context.HttpContext.Response.StatusCode = 500;
 
 
+                logger.LogError(context.Exception, "unhandled error");
             }
-            //TODO: log
-            //var logger = (ILogger)context.HttpContext.RequestServices.GetService(typeof(ILogger));
-            //logger.Error(context.Exception);
 
             context.Result = new ObjectResult(exceptionModel);
         }
