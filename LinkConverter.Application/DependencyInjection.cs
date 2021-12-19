@@ -20,8 +20,15 @@ namespace LinkConverter.Application
         {
             string connectionString = configuration.GetConnectionString("LinkConverterPostgresqlConnection");
             services.AddDbContext<LinkConverterContext>(x => x.UseNpgsql(connectionString));
+
+            #region Test
             services.AddScoped<ITestService, TestService>();
             services.AddScoped<ITestRepository, TestRepository>();
+            #endregion
+
+            #region LinkConverter
+            services.AddScoped<ILinkConverterService, LinkConverterService>();
+            #endregion
 
             #region Migration
             new LinkConverterContextFactory().Migrate();
