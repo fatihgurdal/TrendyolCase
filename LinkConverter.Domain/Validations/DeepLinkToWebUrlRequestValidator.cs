@@ -13,7 +13,7 @@ namespace LinkConverter.Domain.Validations
 
             When(x => x != null, () =>
             {
-                RuleFor(x => x.Url).Must(x => x.StartsWith(Constant.UrlPrefixConsts.DeepLinkPrefix)).WithMessage("Invalid Trendyol depp link");
+                RuleFor(x => x.Url).Must(x => x.StartsWith(Constant.UrlConsts.DeepLinkPrefix)).WithMessage("Invalid Trendyol depp link");
             });
         }
     }

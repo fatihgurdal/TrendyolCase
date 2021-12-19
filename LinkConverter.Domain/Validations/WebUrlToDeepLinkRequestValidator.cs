@@ -15,7 +15,7 @@ namespace LinkConverter.Domain.Validations
             When(x => x != null, () =>
             {
                 RuleFor(x => x.Url).Must(x => x.IsUrl(true)).WithMessage("Invalid url");
-                RuleFor(x => x.Url).Must(x => x.StartsWith(Constant.UrlPrefixConsts.WebDomain)).WithMessage("Invalid Trendyol url");
+                RuleFor(x => x.Url).Must(x => x.StartsWith(Constant.UrlConsts.WebDomain)).WithMessage("Invalid Trendyol url");
             });
         }
 

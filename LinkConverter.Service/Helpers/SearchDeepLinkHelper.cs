@@ -16,7 +16,7 @@ namespace LinkConverter.Service.Helpers
         {
             var query = getQValue(deeplink);
 
-            return $"{Domain.Constant.UrlPrefixConsts.WebDomain}/sr?q={query}";
+            return $"{Domain.Constant.UrlConsts.WebDomain}/sr?q={query}";
         }
 
         private static string getQValue(string deeplink)

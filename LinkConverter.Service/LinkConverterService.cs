@@ -24,28 +24,14 @@ namespace LinkConverter.Service
         }
         public string WebUrlToDeepLink(string url)
         {
-            string response;
+            var productWebUrlConverter = new ProductWebUrlConverter(
+                                                new SearchWebUrlConverter(
+                                                    new HomeWebUrlConverter(null)));
 
-            var pageType = GetWebUrlPageType(url);
-            switch (pageType)
-            {
-                case PageType.Product:
-                    response = ProductWebLinkHelper.GenerateWebLink(url);
-                    break;
-                case PageType.Search:
-                    response = SearchWebLinkHelper.GenerateWebLink(url);
-                    break;
-                case PageType.Home:
-                    response = $"{Domain.Constant.UrlPrefixConsts.DeepLinkPrefix}Page=Home";
-                    break;
-                default:
-                    response = default;
-                    break;
-            }
-
+            var response = productWebUrlConverter.ConvertUrl(url);
             if (!string.IsNullOrWhiteSpace(response))
             {
-                ConverterHistoryRepository.AddHistory(new AddHistoryDto(url, response, Domain.Enums.LinkConvertType.WebUrlToDeepLink));
+                ConverterHistoryRepository.AddHistory(new AddHistoryDto(url, response, LinkConvertType.WebUrlToDeepLink));
                 return response;
             }
             else throw new BadRequestException("Deep link convert fail.", "", ErrorType.Critical);
@@ -61,14 +47,14 @@ namespace LinkConverter.Service
             switch (pageType)
             {
                 case PageType.Product:
-                    response = ProductDeepLinkHelper.GenerateDeepLink(deeplink);
+                    response = ProductDeepLinkConverter.GenerateDeepLink(deeplink);
                     break;
                 case PageType.Search:
                     response = SearchDeepLinkHelper.GenerateDeepLink(deeplink);
                     break;
                 case PageType.Home:
                 default:
-                    response = Domain.Constant.UrlPrefixConsts.WebDomain;
+                    response = Domain.Constant.UrlConsts.WebDomain;
                     break;
             }
 
@@ -87,18 +73,6 @@ namespace LinkConverter.Service
         }
 
         #region Private
-        private PageType GetWebUrlPageType(string url)
-        {
-            if (ProductWebLinkHelper.IsProductDetail(url))
-            {
-                return PageType.Product;
-            }
-            else if (SearchWebLinkHelper.IsSearch(url))
-            {
-                return PageType.Search;
-            }
-            else return PageType.Home;
-        }
         private PageType GeDeepLinkPageType(string deeplink)
         {
             var matchs = deeplink.GetRegexMatch(@"(?:Page=)(?<PageValue>[^&]+)");

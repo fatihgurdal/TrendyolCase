@@ -14,12 +14,10 @@ namespace LinkConverter.Webapi.Filters
     public class ErrorFilter : ExceptionFilterAttribute
     {
         readonly IWebHostEnvironment env;
-        private readonly ILogger logger;
 
-        public ErrorFilter(IWebHostEnvironment Env, ILogger logger)
+        public ErrorFilter(IWebHostEnvironment Env)
         {
             this.env = Env;
-            this.logger = logger;
         }
         public override void OnException(ExceptionContext context)
         {
@@ -35,7 +33,7 @@ namespace LinkConverter.Webapi.Filters
 
                 if (context.Exception is NotFoundExcepiton) context.HttpContext.Response.StatusCode = 404;
                 if (context.Exception is BadRequestException) context.HttpContext.Response.StatusCode = 400;
-                logger.LogError(ex.Message, ex.Detail);
+                //logger.LogError(ex.Message, ex.Detail);
             }
             else
             {
@@ -47,7 +45,7 @@ namespace LinkConverter.Webapi.Filters
                 context.HttpContext.Response.StatusCode = 500;
 
 
-                logger.LogError(context.Exception, "unhandled error");
+                //logger.LogError(context.Exception, "unhandled error");
             }
 
             context.Result = new ObjectResult(exceptionModel);
