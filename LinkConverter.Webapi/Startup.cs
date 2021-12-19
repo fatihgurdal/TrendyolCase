@@ -1,4 +1,7 @@
+using FluentValidation.AspNetCore;
+
 using LinkConverter.Application;
+using LinkConverter.Domain.Validations;
 using LinkConverter.Webapi.Filters;
 
 using Microsoft.AspNetCore.Builder;
@@ -50,14 +53,19 @@ namespace LinkConverter.Webapi
 
             services.AddMvc(options =>
             {
-
                 options.Filters.Add(new ErrorFilter(this.Environment));
+                options.Filters.Add(new ValidationFilter());
 
                 //Swagger ProducesResponseType
                 options.Filters.Add(new ProducesResponseTypeAttribute((int)System.Net.HttpStatusCode.OK));
                 options.Filters.Add(new ProducesResponseTypeAttribute(typeof(Models.ExceptionModel), (int)System.Net.HttpStatusCode.BadRequest));
                 options.Filters.Add(new ProducesResponseTypeAttribute(typeof(Models.ExceptionModel), (int)System.Net.HttpStatusCode.NotFound));
                 options.Filters.Add(new ProducesResponseTypeAttribute(typeof(Models.ExceptionModel), (int)System.Net.HttpStatusCode.InternalServerError));
+            }).AddFluentValidation(fvc => fvc.RegisterValidatorsFromAssemblyContaining<Startup>()); //Validation ModelState IsValid
+
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.SuppressModelStateInvalidFilter = true; //Custom validation filter
             });
 
             //Dependency Injection 

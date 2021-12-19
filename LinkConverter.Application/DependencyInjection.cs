@@ -1,5 +1,9 @@
-﻿using LinkConverter.Domain.Repository;
+﻿using FluentValidation;
+
+using LinkConverter.Domain.Models.Request;
+using LinkConverter.Domain.Repository;
 using LinkConverter.Domain.Service;
+using LinkConverter.Domain.Validations;
 using LinkConverter.Repository.Postgresql.Context;
 using LinkConverter.Repository.Postgresql.Repositories;
 using LinkConverter.Service;
@@ -28,6 +32,9 @@ namespace LinkConverter.Application
 
             #region LinkConverter
             services.AddScoped<ILinkConverterService, LinkConverterService>();
+            //Validation
+            services.AddTransient<IValidator<DeepLinkToWebUrlRequest>, DeepLinkToWebUrlRequestValidator>();
+            services.AddTransient<IValidator<WebUrlToDeepLinkRequest>, WebUrlToDeepLinkRequestValidator>();
             #endregion
 
             #region Migration
