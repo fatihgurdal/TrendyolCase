@@ -1,20 +1,15 @@
-﻿using LinkConverter.Domain.Extensions;
-using LinkConverter.Domain.Helper;
-
+﻿
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace LinkConverter.Service.Helpers
+namespace LinkConverter.Service.Converters
 {
-    public class SearchDeepLinkConverter : LinkConverterHandler
+    public class SearchDeepLinkConverter : Domain.Abstract.LinkConverter
     {
         //ty://?Page=Search&Query=%C3%BCt%C3%BC
         //https://www.trendyol.com/sr?q=%C3%BCt%C3%BC
         private const string searchPattern = @"Query=(?<QueryValue>[^:\/\n=&]+)$";
 
-        public SearchDeepLinkConverter(LinkConverterHandler nextHandler) : base(nextHandler)
+        public SearchDeepLinkConverter(Domain.Abstract.LinkConverter nextHandler) : base(nextHandler)
         {
         }
 

@@ -1,16 +1,13 @@
 ﻿using LinkConverter.Domain.Enums;
 using LinkConverter.Domain.Exception;
-using LinkConverter.Domain.Extensions;
 using LinkConverter.Domain.Models.Dto;
 using LinkConverter.Domain.Models.Response;
 using LinkConverter.Domain.Repository;
 using LinkConverter.Domain.Service;
-using LinkConverter.Service.Helpers;
+using LinkConverter.Service.Converters;
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace LinkConverter.Service
 {
@@ -39,24 +36,11 @@ namespace LinkConverter.Service
 
         public string DeepLinkToWebUrl(string deeplink)
         {
-            string response;
+            var productWebUrlConverter = new ProductDeepLinkConverter(
+                                                new SearchDeepLinkConverter(
+                                                    new HomeDeepLinkConverter(null)));
 
-
-            var pageType = GeDeepLinkPageType(deeplink);
-
-            switch (pageType)
-            {
-                case PageType.Product:
-                    response = ProductDeepLinkConverter.GenerateDeepLink(deeplink);
-                    break;
-                case PageType.Search:
-                    response = SearchDeepLinkConverter.GenerateDeepLink(deeplink);
-                    break;
-                case PageType.Home:
-                default:
-                    response = Domain.Constant.UrlConsts.WebDomain;
-                    break;
-            }
+            var response = productWebUrlConverter.ConvertUrl(deeplink);
 
             if (!string.IsNullOrWhiteSpace(response))
             {
@@ -71,22 +55,5 @@ namespace LinkConverter.Service
         {
             return ConverterHistoryRepository.Get(x => true).Select(x => new LinkConvertHistoryResponse(x));
         }
-
-        #region Private
-        private PageType GeDeepLinkPageType(string deeplink)
-        {
-            var matchs = deeplink.GetRegexMatch(@"(?:Page=)(?<PageValue>[^&]+)");
-            if (matchs.Any())
-            {
-                var pageName = matchs.First().Groups["Query"].Value;
-                if (pageName.Equals("Product", StringComparison.OrdinalIgnoreCase)) return PageType.Product;
-                else if (pageName.Equals("Search", StringComparison.OrdinalIgnoreCase)) return PageType.Search;
-                else return PageType.Home;
-            }
-            else return PageType.Home;
-
-
-        }
-        #endregion
     }
 }

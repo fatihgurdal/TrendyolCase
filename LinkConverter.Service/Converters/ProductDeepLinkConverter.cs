@@ -1,19 +1,18 @@
 ﻿using LinkConverter.Domain.Exception;
-using LinkConverter.Domain.Helper;
 
 using System;
 using System.Collections.Generic;
 
-namespace LinkConverter.Service.Helpers
+namespace LinkConverter.Service.Converters
 {
-    internal class ProductDeepLinkConverter : LinkConverterHandler
+    internal class ProductDeepLinkConverter : Domain.Abstract.LinkConverter
     {
         private const string productPrefix = "https://www.trendyol.com/brand/name-p-";
         private const string productPattern = @"(?:ContentId=)(?<ContentValue>[\d^]+)";
         private const string campaignPattern = @"(?:CampaignId=)(?<CampaignValue>[\d^]+)";
         private const string merchantPattern = @"(?:MerchantId=)(?<MerchantValue>[\d^]+)";
 
-        public ProductDeepLinkConverter(LinkConverterHandler nextHandler) : base(nextHandler)
+        public ProductDeepLinkConverter(Domain.Abstract.LinkConverter nextHandler) : base(nextHandler)
         {
         }
         public override string ConvertUrl(string url)

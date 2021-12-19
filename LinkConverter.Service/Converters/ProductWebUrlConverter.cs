@@ -1,10 +1,9 @@
-﻿using LinkConverter.Domain.Helper;
-
+﻿
 using System.Collections.Generic;
 
-namespace LinkConverter.Service.Helpers
+namespace LinkConverter.Service.Converters
 {
-    internal class ProductWebUrlConverter : LinkConverterHandler
+    internal class ProductWebUrlConverter : Domain.Abstract.LinkConverter
     {
         #region Consts
         private const string productPattern = @"(?:-p-)(?<ProductValue>[\d^]+)";
@@ -12,7 +11,7 @@ namespace LinkConverter.Service.Helpers
         private const string merchanPattern = @"(?:merchantId=)(?<MerchantValue>[\d^]+)";
         #endregion
 
-        public ProductWebUrlConverter(LinkConverterHandler nextHandler) : base(nextHandler)
+        public ProductWebUrlConverter(Domain.Abstract.LinkConverter nextHandler) : base(nextHandler)
         {
         }
 

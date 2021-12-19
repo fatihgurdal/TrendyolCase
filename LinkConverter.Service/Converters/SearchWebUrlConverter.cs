@@ -1,18 +1,14 @@
 ﻿using LinkConverter.Domain.Extensions;
-using LinkConverter.Domain.Helper;
 
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace LinkConverter.Service.Helpers
+namespace LinkConverter.Service.Converters
 {
-    internal class SearchWebUrlConverter : Domain.Helper.LinkConverterHandler
+    internal class SearchWebUrlConverter : Domain.Abstract.LinkConverter
     {
         private const string searchPattern = @"sr\?q=(?<Query>[^:\/\n=&]+)$";
 
-        public SearchWebUrlConverter(LinkConverterHandler nextHandler) : base(nextHandler)
+        public SearchWebUrlConverter(Domain.Abstract.LinkConverter nextHandler) : base(nextHandler)
         {
         }
 
