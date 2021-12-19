@@ -1,0 +1,14 @@
+[
+  {
+    "RequestUrl": "https://www.trendyol.com/casio/saat-p-1925865?boutiqueId=439892&merchantId=105064",
+    "ResponseUrl": "ty://?Page=Product&ContentId=1&CampaignId=439892&MerchantId=105064"
+  },
+  {
+    "RequestUrl": "https://www.trendyol.com/casio/saat-p-3123213?merchantId=105064&boutiqueId=43982",
+    "ResponseUrl": "ty://?Page=Product&ContentId=3123213&CampaignId=2&MerchantId=105064"
+  },
+  {
+    "RequestUrl": "https://www.trendyol.com/thermoad/3-lu-granit-dokum-tava-seti-gri-termoad-p-122008019?boutiqueId=591815&merchantId=114621",
+    "ResponseUrl": "ty://?Page=Product&ContentId=122008019&CampaignId=591815&MerchantId=3"
+  }
+]

@@ -1,4 +1,6 @@
 ﻿
+using LinkConverter.Domain.Exception;
+
 using System.Collections.Generic;
 
 namespace LinkConverter.Service.Converters
@@ -8,7 +10,7 @@ namespace LinkConverter.Service.Converters
         #region Consts
         private const string productPattern = @"(?:-p-)(?<ProductValue>[\d^]+)";
         private const string boutiquePattern = @"(?:boutiqueId=)(?<BoutiqueValue>[\d^]+)";
-        private const string merchanPattern = @"(?:merchantId=)(?<MerchantValue>[\d^]+)";
+        private const string merchantPattern = @"(?:merchantId=)(?<MerchantValue>[\d^]+)";
         #endregion
 
         public ProductWebUrlConverter(Domain.Abstract.LinkConverter nextHandler) : base(nextHandler)
@@ -33,7 +35,7 @@ namespace LinkConverter.Service.Converters
         {
             var queryParameters = new List<string>();
 
-            var productId = GetProductId(url);
+            var productId = GetContentId(url);
             if (!string.IsNullOrEmpty(productId)) queryParameters.Add($"Page=Product&ContentId={productId}");
 
             var boutiqueId = GetBoutiqueId(url);
@@ -46,22 +48,25 @@ namespace LinkConverter.Service.Converters
         }
         private bool IsProductDetail(string url)
         {
-            return url.Contains("-p-") && !string.IsNullOrEmpty(GetProductId(url));
+            return url.Contains("-p-") && !string.IsNullOrEmpty(GetContentId(url));
         }
 
-        private string GetProductId(string url)
+        private string GetContentId(string url)
         {
-            return base.GetUrlValueWithRegex(url, productPattern, "ProductValue");
+            var contentId = base.GetUrlValueWithRegex(url, productPattern, "ProductValue");
+            return contentId == "0" ? throw new BadRequestException("Content Id cannot be zero") : contentId;
         }
 
         private string GetBoutiqueId(string url)
         {
-            return base.GetUrlValueWithRegex(url, boutiquePattern, "BoutiqueValue");
+            var boutiqueId = base.GetUrlValueWithRegex(url, boutiquePattern, "BoutiqueValue");
+            return boutiqueId == "0" ? throw new BadRequestException("Boutique Id cannot be zero") : boutiqueId;
         }
 
         private string GetMerchantId(string url)
         {
-            return base.GetUrlValueWithRegex(url, merchanPattern, "MerchantValue");
+            var merchantId = base.GetUrlValueWithRegex(url, merchantPattern, "MerchantValue");
+            return merchantId == "0" ? throw new BadRequestException("Terchant Id cannot be zero") : merchantId;
         }
         #endregion
 

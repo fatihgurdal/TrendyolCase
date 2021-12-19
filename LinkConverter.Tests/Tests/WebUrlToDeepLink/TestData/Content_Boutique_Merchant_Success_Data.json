@@ -1,0 +1,22 @@
+[
+  {
+    "RequestUrl": "https://www.trendyol.com/casio/saat-p-1925865?boutiqueId=439892&merchantId=105064",
+    "ResponseUrl": "ty://?Page=Product&ContentId=1925865&CampaignId=439892&MerchantId=105064"
+  },
+  {
+    "RequestUrl": "https://www.trendyol.com/casio/saat-p-3123213?merchantId=105064&boutiqueId=43982",
+    "ResponseUrl": "ty://?Page=Product&ContentId=3123213&CampaignId=43982&MerchantId=105064"
+  },
+  {
+    "RequestUrl": "https://www.trendyol.com/thermoad/3-lu-granit-dokum-tava-seti-gri-termoad-p-122008019?boutiqueId=591815&merchantId=114621",
+    "ResponseUrl": "ty://?Page=Product&ContentId=122008019&CampaignId=591815&MerchantId=114621"
+  },
+  {
+    "RequestUrl": "https://www.trendyol.com/madame-coco/perline-4-lu-dondurma-kasesi-seti-p-3109633?boutiqueId=591815&merchantId=612",
+    "ResponseUrl": "ty://?Page=Product&ContentId=3109633&CampaignId=591815&MerchantId=612"
+  },
+  {
+    "RequestUrl": "https://www.trendyol.com/karin-ev/12-adet-ahsap-gorunumlu-plastik-a-kalite-aski-kiyafet-ve-elbise-askisi-beyaz-fma005291-p-74633298?boutiqueId=591815&merchantId=117992",
+    "ResponseUrl": "ty://?Page=Product&ContentId=74633298&CampaignId=591815&MerchantId=117992"
+  }
+]
