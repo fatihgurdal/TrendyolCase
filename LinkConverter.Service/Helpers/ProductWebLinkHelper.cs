@@ -33,7 +33,7 @@ namespace LinkConverter.Service.Helpers
         #region Private
         private static int? getProductId(string url)
         {
-            var matchs = url.GetRegexMatch(@"(?:-p-)(?<ProductValue>[\d^&]+)");
+            var matchs = url.GetRegexMatch(@"(?:-p-)(?<ProductValue>[\d^]+)");
             if (matchs.Any())
             {
                 var value = matchs.First().Groups["ProductValue"].Value;
@@ -44,7 +44,7 @@ namespace LinkConverter.Service.Helpers
 
         private static int? getBoutiqueId(string url)
         {
-            var matchs = url.GetRegexMatch(@"(?:boutiqueId=)(?<BoutiqueValue>[^&]+)");
+            var matchs = url.GetRegexMatch(@"(?:boutiqueId=)(?<BoutiqueValue>[\d^]+)");
             if (matchs.Any())
             {
                 var value = matchs.First().Groups["BoutiqueValue"].Value;
@@ -55,7 +55,7 @@ namespace LinkConverter.Service.Helpers
 
         private static int? getMerchantId(string url)
         {
-            var matchs = url.GetRegexMatch(@"(?:merchantId=)(?<MerchantValue>[^&]+)");
+            var matchs = url.GetRegexMatch(@"(?:merchantId=)(?<MerchantValue>[\d^]+)");
             if (matchs.Any())
             {
                 var value = matchs.First().Groups["MerchantValue"].Value;

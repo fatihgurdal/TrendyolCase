@@ -24,7 +24,7 @@ namespace LinkConverter.Service
         {
             string response;
 
-            var pageType = GetPageType(url);
+            var pageType = GetWebUrlPageType(url);
             switch (pageType)
             {
                 case PageType.Product:
@@ -44,24 +44,43 @@ namespace LinkConverter.Service
             if (!string.IsNullOrWhiteSpace(response))
             {
                 ConverterHistoryRepository.AddHistory(url, response, Domain.Enums.LinkConvertType.WebUrlToDeepLink);
+                return response;
             }
             else throw new BadRequestException("Deep link convert fail.", "", ErrorType.Critical);
-
-            return response;
         }
 
         public string DeepLinkToWebUrl(string deeplink)
         {
-            //Convert logic
+            string response;
 
-            var response = $"Response{deeplink}";
-            ConverterHistoryRepository.AddHistory(deeplink, response, Domain.Enums.LinkConvertType.WebUrlToDeepLink);
 
-            return response;
+            var pageType = GeDeepLinkPageType(deeplink);
+
+            switch (pageType)
+            {
+                case PageType.Product:
+                    response = ProductDeepLinkHelper.GenerateDeepLink(deeplink);
+                    break;
+                case PageType.Search:
+                    response = SearchDeepLinkHelper.GenerateDeepLink(deeplink);
+                    break;
+                case PageType.Home:
+                default:
+                    response = Domain.Constant.UrlPrefixConsts.WebDomain;
+                    break;
+            }
+
+            if (!string.IsNullOrWhiteSpace(response))
+            {
+                ConverterHistoryRepository.AddHistory(deeplink, response, Domain.Enums.LinkConvertType.DeepLinkToWebUrl);
+                return response;
+            }
+            else throw new BadRequestException("Deep link convert fail.", "", ErrorType.Critical);
+
         }
 
 
-        private PageType GetPageType(string url)
+        private PageType GetWebUrlPageType(string url)
         {
             if (ProductWebLinkHelper.IsProductDetail(url))
             {
@@ -72,6 +91,20 @@ namespace LinkConverter.Service
                 return PageType.Search;
             }
             else return PageType.Home;
+        }
+        private PageType GeDeepLinkPageType(string deeplink)
+        {
+            var matchs = deeplink.GetRegexMatch(@"(?:Page=)(?<PageValue>[^&]+)");
+            if (matchs.Any())
+            {
+                var pageName = matchs.First().Groups["Query"].Value;
+                if (pageName.Equals("Product", StringComparison.OrdinalIgnoreCase)) return PageType.Product;
+                else if (pageName.Equals("Search", StringComparison.OrdinalIgnoreCase)) return PageType.Search;
+                else return PageType.Home;
+            }
+            else return PageType.Home;
+
+
         }
     }
 }
