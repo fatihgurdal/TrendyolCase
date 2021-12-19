@@ -18,13 +18,15 @@ namespace LinkConverter.Application
     {
         public static IServiceCollection AddDbContextServices(this IServiceCollection services, IConfiguration configuration)
         {
-            //ServiceProvider provider = services.BuildServiceProvider();
-
             string connectionString = configuration.GetConnectionString("LinkConverterPostgresqlConnection");
             services.AddDbContext<LinkConverterContext>(x => x.UseNpgsql(connectionString));
-
             services.AddScoped<ITestService, TestService>();
             services.AddScoped<ITestRepository, TestRepository>();
+
+            #region Migration
+            new LinkConverterContextFactory().Migrate();
+            #endregion
+
             return services;
         }
     }

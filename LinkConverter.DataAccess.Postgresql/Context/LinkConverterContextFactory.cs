@@ -7,7 +7,7 @@ using System.IO;
 
 namespace LinkConverter.Repository.Postgresql.Context
 {
-    internal class LinkConverterContextFactory : IDesignTimeDbContextFactory<LinkConverterContext>
+    public class LinkConverterContextFactory : IDesignTimeDbContextFactory<LinkConverterContext>
     {
         private readonly IConfiguration Configuration;
         public LinkConverterContextFactory()
@@ -27,5 +27,12 @@ namespace LinkConverter.Repository.Postgresql.Context
             return new LinkConverterContext(builder.Options);
         }
 
+        public void Migrate()
+        {
+            using (var context = this.CreateDbContext())
+            {
+                context.Database.Migrate();
+            }
+        }
     }
 }

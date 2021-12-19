@@ -1,8 +1,10 @@
 using LinkConverter.Application;
+using LinkConverter.Webapi.Filters;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -18,10 +20,12 @@ namespace LinkConverter.Webapi
     public class Startup
     {
         private readonly IConfiguration Configuration;
+        private readonly IWebHostEnvironment Environment;
 
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
             Configuration = configuration;
+            this.Environment = environment;
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -42,6 +46,18 @@ namespace LinkConverter.Webapi
 
                     },
                 });
+            });
+
+            services.AddMvc(options =>
+            {
+
+                options.Filters.Add(new ErrorFilter(this.Environment));
+
+                //Swagger ProducesResponseType
+                options.Filters.Add(new ProducesResponseTypeAttribute((int)System.Net.HttpStatusCode.OK));
+                options.Filters.Add(new ProducesResponseTypeAttribute(typeof(Models.ExceptionModel), (int)System.Net.HttpStatusCode.BadRequest));
+                options.Filters.Add(new ProducesResponseTypeAttribute(typeof(Models.ExceptionModel), (int)System.Net.HttpStatusCode.NotFound));
+                options.Filters.Add(new ProducesResponseTypeAttribute(typeof(Models.ExceptionModel), (int)System.Net.HttpStatusCode.InternalServerError));
             });
 
             //Dependency Injection 
