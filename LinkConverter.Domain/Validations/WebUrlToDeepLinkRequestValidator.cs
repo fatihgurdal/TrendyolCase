@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
-using FluentValidation.Results;
 
 using LinkConverter.Domain.Models.Request;
+
 using LinkConverter.Domain.Extensions;
 
 namespace LinkConverter.Domain.Validations
@@ -17,11 +17,6 @@ namespace LinkConverter.Domain.Validations
                 RuleFor(x => x.Url).Must(x => x.IsUrl(true)).WithMessage("Invalid url");
                 RuleFor(x => x.Url).Must(x => x.StartsWith(Constant.UrlConsts.WebDomain)).WithMessage("Invalid Trendyol url");
             });
-        }
-
-        public override ValidationResult Validate(ValidationContext<WebUrlToDeepLinkRequest> context)
-        {
-            return base.Validate(context);
         }
     }
 }

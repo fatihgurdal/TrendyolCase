@@ -1,0 +1,22 @@
+[
+  {
+    "RequestUrl": "https://www.trendyol.com/Hesabim/#/Siparislerim",
+    "ResponseUrl": "ty://?Page=Home"
+  },
+  {
+    "RequestUrl": "https://www.trendyol.com/Hesabim/Favoriler",
+    "ResponseUrl": "ty://?Page=Home"
+  },
+  {
+    "RequestUrl": "https://www.trendyol.com/sepet",
+    "ResponseUrl": "ty://?Page=Home"
+  },
+  {
+    "RequestUrl": "https://www.trendyol.com/Hesabim/KullaniciBilgileri",
+    "ResponseUrl": "ty://?Page=Home"
+  },
+  {
+    "RequestUrl": "https://www.trendyol.com/butik/liste/10/saat--aksesuar",
+    "ResponseUrl": "ty://?Page=Home"
+  }
+]

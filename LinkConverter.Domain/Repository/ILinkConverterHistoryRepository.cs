@@ -7,5 +7,6 @@ namespace LinkConverter.Domain.Repository
     public interface ILinkConverterHistoryRepository : IRepository<LinkConverterHistory, int>
     {
         int AddHistory(AddHistoryDto addHistory);
+        void Clear();
     }
 }

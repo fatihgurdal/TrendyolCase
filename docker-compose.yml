@@ -1,0 +1,37 @@
+version: '3.4'
+
+networks:
+  dockerapi-dev:
+    driver: bridge 
+
+services:
+  dockerapi:
+    image: dockerapi:latest
+    depends_on:
+      - "postgres_image"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"     
+    environment:
+      ConnectionStrings:LinkConverterPostgresqlConnection: "host=postgres_image;port=5432;database=FgurdalLinkConverterDB;username=linkconverteruser;password=0"
+      ASPNETCORE_ENVIRONMENT: "Development"
+    networks:
+      - dockerapi-dev  
+  
+  postgres_image:
+    image: postgres:latest
+    ports:
+      - "5432"
+    restart: always
+    volumes:
+      - db_volume:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: "linkconverteruser"
+      POSTGRES_PASSWORD: "0"
+      POSTGRES_DB: "FgurdalLinkConverterDB"
+    networks:
+      - dockerapi-dev
+volumes:
+  db_volume:

@@ -1,12 +1,8 @@
 ﻿using LinkConverter.Domain.Enums;
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace LinkConverter.Domain.Exception
 {
-    public class NotFoundExcepiton : BaseExcepiton
+    public class NotFoundExcepiton : BaseException
     {
         public NotFoundExcepiton(string message) : this(message, string.Empty)
         {

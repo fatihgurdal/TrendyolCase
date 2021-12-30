@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "LinkConverter.Tests": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "UnitTest"
+      }
+    }
+  }
+}

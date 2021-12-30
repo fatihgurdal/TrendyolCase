@@ -1,0 +1,34 @@
+﻿[
+  {
+    "RequestUrl": "ty://?Page=Product&ContentId=1925865&CampaignId=439892&MerchantId=105064",
+    "ResponseUrl": "https://www.trendyol.com"
+  },
+  {
+    "RequestUrl": "ty://?Page=Product&ContentId=3123213&CampaignId=43982&MerchantId=105064",
+    "ResponseUrl": "https://www.trendyol.com"
+  },
+  {
+    "RequestUrl": "ty://?Page=Product&ContentId=122008019&CampaignId=591815&MerchantId=114621",
+    "ResponseUrl": "https://www.trendyol.com"
+  },
+  {
+    "RequestUrl": "ty://?Page=Product&ContentId=1925865",
+    "ResponseUrl": "https://www.trendyol.com"
+  },
+  {
+    "RequestUrl": "ty://?Page=Product&ContentId=3123213",
+    "ResponseUrl": "https://www.trendyol.com"
+  },
+  {
+    "RequestUrl": "ty://?Page=Search&Query=laptop",
+    "ResponseUrl": "https://www.trendyol.com"
+  },
+  {
+    "RequestUrl": "ty://?Page=Search&Query=%C3%A7aydanl%C4%B1k",
+    "ResponseUrl": "https://www.trendyol.com"
+  },
+  {
+    "RequestUrl": "ty://?Page=Search&Query=%C3%BCt%C3%BC",
+    "ResponseUrl": "https://www.trendyol.com"
+  }
+]

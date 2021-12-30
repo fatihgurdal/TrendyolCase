@@ -1,40 +1,36 @@
 using FluentValidation.AspNetCore;
 
 using LinkConverter.Application;
-using LinkConverter.Domain.Validations;
 using LinkConverter.Webapi.Filters;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LinkConverter.Webapi
 {
     public class Startup
     {
-        private readonly IConfiguration Configuration;
         private readonly IWebHostEnvironment Environment;
-
         public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
             Configuration = configuration;
             this.Environment = environment;
         }
 
+        public IConfiguration Configuration { get; }
+
+        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
@@ -51,7 +47,6 @@ namespace LinkConverter.Webapi
                     },
                 });
             });
-           
             services.AddMvc(options =>
             {
                 options.Filters.Add(new ErrorFilter(this.Environment));
@@ -59,10 +54,11 @@ namespace LinkConverter.Webapi
 
                 //Swagger ProducesResponseType
                 options.Filters.Add(new ProducesResponseTypeAttribute((int)System.Net.HttpStatusCode.OK));
+                //Custom Error Response
                 options.Filters.Add(new ProducesResponseTypeAttribute(typeof(Models.ExceptionModel), (int)System.Net.HttpStatusCode.BadRequest));
                 options.Filters.Add(new ProducesResponseTypeAttribute(typeof(Models.ExceptionModel), (int)System.Net.HttpStatusCode.NotFound));
                 options.Filters.Add(new ProducesResponseTypeAttribute(typeof(Models.ExceptionModel), (int)System.Net.HttpStatusCode.InternalServerError));
-            }).AddFluentValidation(fvc => fvc.RegisterValidatorsFromAssemblyContaining<Startup>()); //Validation ModelState IsValid
+            }).AddFluentValidation(fvc => fvc.RegisterValidatorsFromAssemblyContaining<Startup>()); //Validation ModelState IsValid;
 
             services.Configure<ApiBehaviorOptions>(options =>
             {
@@ -71,14 +67,9 @@ namespace LinkConverter.Webapi
 
             //Dependency Injection 
             services.AddDbContextServices(Configuration);
-
-            services.AddLogging(config =>
-            {
-                config.AddDebug();
-                config.AddConsole();
-            });
         }
 
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -86,22 +77,26 @@ namespace LinkConverter.Webapi
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
+            if (!env.IsProduction())
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Link Converter");
-                c.RoutePrefix = string.Empty;
-            });
+                app.UseSwagger();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Link Converter");
+                    c.RoutePrefix = string.Empty;
+                });
+            }
 
             app.UseHttpsRedirection();
+
             app.UseRouting();
+
             app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-
         }
-
     }
 }

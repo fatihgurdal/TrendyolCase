@@ -8,6 +8,7 @@ namespace LinkConverter.Domain.Models.Response
 {
     public class LinkConvertHistoryResponse
     {
+        public int Id { get; set; }
         public LinkConvertType ConvertType { get; set; }
         public string RequestLink { get; set; }
         public string ResponseLink { get; set; }
@@ -27,6 +28,7 @@ namespace LinkConverter.Domain.Models.Response
 
         public LinkConvertHistoryResponse(DBEntity.LinkConverterHistory entity)
         {
+            this.Id = entity.Id;
             this.ConvertType = entity.ConvertType;
             this.RequestLink = entity.RequestLink;
             this.ResponseLink = entity.ResponseLink;

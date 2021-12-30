@@ -9,10 +9,11 @@ namespace LinkConverter.Tests.Helper
 {
     internal class TestDataReaderHelper
     {
+        private const string TestNameSpace = "LinkConverter.Tests.Tests.";
         private static string ReadEmbededResource(string path)
         {
             var assembly = Assembly.GetExecutingAssembly();
-            using (Stream resource = assembly.GetManifestResourceStream($"LinkConverter.Tests.Tests.{path}"))
+            using (Stream resource = assembly.GetManifestResourceStream($"{TestNameSpace}{path}"))
             {
                 using (StreamReader reader = new StreamReader(resource))
                 {

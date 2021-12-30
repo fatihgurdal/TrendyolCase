@@ -1,0 +1,34 @@
+[
+  {
+    "RequestUrl": "ty://?Page=Product&ContentId=1925865",
+    "ResponseUrl": "https://www.trendyol.com/brand/name-p-1925865"
+  },
+  {
+    "RequestUrl": "ty://?Page=Product&ContentId=3123213",
+    "ResponseUrl": "https://www.trendyol.com/brand/name-p-3123213"
+  },
+  {
+    "RequestUrl": "ty://?Page=Product&ContentId=122008019&CampaignId=591815&MerchantId=114621",
+    "ResponseUrl": "https://www.trendyol.com/brand/name-p-122008019?boutiqueId=591815&merchantId=114621"
+  },
+  {
+    "RequestUrl": "ty://?Page=Product&ContentId=458489&CampaignId=3213&MerchantId=3434",
+    "ResponseUrl": "https://www.trendyol.com/brand/name-p-458489?boutiqueId=3213&merchantId=3434"
+  },
+  {
+    "RequestUrl": "ty://?Page=Product&ContentId=1925865&CampaignId=439892 ",
+    "ResponseUrl": "https://www.trendyol.com/brand/name-p-1925865?boutiqueId=439892"
+  },
+  {
+    "RequestUrl": "ty://?Page=Product&ContentId=989859&CampaignId=343454 ",
+    "ResponseUrl": "https://www.trendyol.com/brand/name-p-989859?boutiqueId=343454"
+  },
+  {
+    "RequestUrl": "ty://?Page=Product&ContentId=1925865&MerchantId=105064",
+    "ResponseUrl": "https://www.trendyol.com/brand/name-p-1925865?merchantId=105064"
+  },
+  {
+    "RequestUrl": "ty://?Page=Product&ContentId=4565434&MerchantId=23145 ",
+    "ResponseUrl": "https://www.trendyol.com/brand/name-p-4565434?merchantId=23145"
+  }
+]

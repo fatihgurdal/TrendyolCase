@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -8,11 +8,20 @@
 
   <ItemGroup>
     <None Remove="appsettings.json" />
+    <None Remove="Tests\DeepLinkToWebUrl\TestData\Content_Fail_Data.json" />
+    <None Remove="Tests\DeepLinkToWebUrl\TestData\Content_Success_Data.json" />
+    <None Remove="Tests\DeepLinkToWebUrl\TestData\Content_Throw_Data.json" />
+    <None Remove="Tests\DeepLinkToWebUrl\TestData\Home_Success_Data.json" />
+    <None Remove="Tests\DeepLinkToWebUrl\TestData\Home_Success_Fail.json" />
+    <None Remove="Tests\DeepLinkToWebUrl\TestData\Search_Success_Data.json" />
+    <None Remove="Tests\DeepLinkToWebUrl\TestData\Search_Success_Fail.json" />
     <None Remove="Tests\WebUrlToDeepLink\TestData\Content_Boutique_Merchant_Fail_Data.json" />
     <None Remove="Tests\WebUrlToDeepLink\TestData\Content_Boutique_Merchant_Success_Data.json" />
     <None Remove="Tests\WebUrlToDeepLink\TestData\Content_Boutique_Merchant_Throw_Data.json" />
     <None Remove="Tests\WebUrlToDeepLink\TestData\Content_Fail_Data.json" />
     <None Remove="Tests\WebUrlToDeepLink\TestData\Content_Success_Data.json" />
+    <None Remove="Tests\WebUrlToDeepLink\TestData\Home_Success_Data.json" />
+    <None Remove="Tests\WebUrlToDeepLink\TestData\Home_Success_Fail.json" />
     <None Remove="Tests\WebUrlToDeepLink\TestData\Search_Success_Data.json" />
     <None Remove="Tests\WebUrlToDeepLink\TestData\Search_Success_Fail.json" />
   </ItemGroup>
@@ -20,31 +29,56 @@
   <ItemGroup>
     <Content Include="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Tests\WebUrlToDeepLink\TestData\Content_Boutique_Merchant_Throw_Data.json">
+    <EmbeddedResource Include="Tests\DeepLinkToWebUrl\TestData\Content_Fail_Data.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\DeepLinkToWebUrl\TestData\Content_Success_Data.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\DeepLinkToWebUrl\TestData\Content_Throw_Data.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\DeepLinkToWebUrl\TestData\Home_Success_Data.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\DeepLinkToWebUrl\TestData\Home_Success_Fail.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\DeepLinkToWebUrl\TestData\Search_Success_Data.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\DeepLinkToWebUrl\TestData\Search_Success_Fail.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Tests\WebUrlToDeepLink\TestData\Content_Boutique_Merchant_Fail_Data.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Tests\WebUrlToDeepLink\TestData\Content_Boutique_Merchant_Success_Data.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\WebUrlToDeepLink\TestData\Content_Boutique_Merchant_Throw_Data.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Tests\WebUrlToDeepLink\TestData\Content_Fail_Data.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Tests\WebUrlToDeepLink\TestData\Search_Success_Fail.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Tests\WebUrlToDeepLink\TestData\Search_Success_Data.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Tests\WebUrlToDeepLink\TestData\Content_Success_Data.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Tests\WebUrlToDeepLink\TestData\Content_Boutique_Merchant_Success_Data.json">
+    <EmbeddedResource Include="Tests\WebUrlToDeepLink\TestData\Home_Success_Data.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\WebUrlToDeepLink\TestData\Search_Success_Data.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\WebUrlToDeepLink\TestData\Home_Success_Fail.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tests\WebUrlToDeepLink\TestData\Search_Success_Fail.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
@@ -61,13 +95,17 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.11" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.11" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\LinkConverter.Application\LinkConverter.Application.csproj" />
     <ProjectReference Include="..\LinkConverter.Domain\LinkConverter.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\launchSettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

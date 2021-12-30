@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LinkConverter.Tests.Models
+﻿namespace LinkConverter.Tests.Models
 {
     public class ConvertModel
     {

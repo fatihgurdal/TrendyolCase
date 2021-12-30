@@ -1,5 +1,4 @@
-﻿
-using FluentValidation;
+﻿using FluentValidation;
 
 using LinkConverter.Domain.Models.Request;
 

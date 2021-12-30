@@ -1,13 +1,10 @@
-﻿using LinkConverter.Domain.Enums;
-using LinkConverter.Domain.Models.Request;
+﻿using LinkConverter.Domain.Models.Request;
 using LinkConverter.Domain.Models.Response;
-using LinkConverter.Domain.Models.TestEntity;
 using LinkConverter.Domain.Service;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,49 +14,13 @@ namespace LinkConverter.Webapi.Controllers
     [Route("api/[controller]/[action]")]
     public class LinksController : ControllerBase
     {
-        #region Test
-
-        [ActionName("AddTest")]
-        [HttpPost]
-        public ActionResult<int> AddTest([FromServices] ITestService service,
-            [FromBody] AddTestRequest body)
-        {
-            return service.Add(body.Name, body.Age);
-        }
-        [ActionName("GetTests")]
-        [HttpGet]
-        public ActionResult<string> GetTests([FromServices] ITestService service)
-        {
-            return service.GetAll();
-        }
-
-        [ActionName("CustomThrow")]
-        [HttpGet]
-        public ActionResult<string> CustomThrow([FromQuery] ErrorType type)
-        {
-            switch (type)
-            {
-                case ErrorType.Critical:
-                    throw new System.Exception("Custom System Exception");
-                case ErrorType.Validation:
-                    throw new Domain.Exception.BadRequestException("Custom BadRequestException");
-                case ErrorType.Warning:
-                    throw new Domain.Exception.NotFoundExcepiton("Custom BadRequestException");
-                case ErrorType.Info:
-                    throw new Domain.Exception.BadRequestException("Custom BadRequestException");
-                default:
-                    throw new Domain.Exception.BadRequestException("Custom BadRequestException");
-            }
-        }
-        #endregion
-
         #region WebUrlToDeepLink
         /// <summary>
-        /// Trendyol web url adresini deep linke çevirir
+        /// Trendyol web url adresini deep linke çevirir. Gönderilen web urllerin trendyol'a ait olduğuna dikkat edilmesi gerekir. Ürün detayı veya arama linkleri değilse yaptığı çeviri ana sayfa deep link olacaktır.
         /// </summary>
         /// <param name="service">Dependency injection tarafından kullanılır request için ihtiyaç yoktur</param>
         /// <param name="body">Dönüştürülecek url'in http body içerisinde Url ile gönderilen objedir.</param>
-        /// <returns>Deep link döner</returns>
+        /// <returns>Deep link döner. Örn: ty://?Page=Search&Query=kalem</returns>
         [HttpPost]
         [ActionName("WebUrlToDeepLink")]
         public ActionResult<string> WebUrlToDeepLink([FromServices] ILinkConverterService service, [FromBody] WebUrlToDeepLinkRequest body)
@@ -68,11 +29,11 @@ namespace LinkConverter.Webapi.Controllers
         }
 
         /// <summary>
-        /// Trendyol web url adresini deep linke çevirir
+        /// Trendyol web url adresini deep linke çevirir. Gönderilen web urllerin trendyol'a ait olduğuna dikkat edilmesi gerekir. Ürün detayı veya arama linkleri değilse yaptığı çeviri ana sayfa deep link olacaktır. Diğer uçtan farklı olarak linki route'dan alır. İşlevsellik olarak farkları yoktur.
         /// </summary>
         /// <param name="service">Dependency injection tarafından kullanılır request için ihtiyaç yoktur</param>
         /// <param name="weburl">Route ile çevrilecek olan web url</param>
-        /// <returns>Deep link döner</returns>
+        /// <returns>Deep link döner. Örn: ty://?Page=Search&Query=kalem</returns>
         [HttpGet]
         [ActionName("WebUrlToDeepLink")]
         [Route("{weburl:length(25,2048)}")] //İş mantığında url max uzunluk limiti bilinmediği için tahmini bir verildi. Normalde host eden uygulma üzerinde illaki max bir limit verilir(MaxRequestLineSize vb.).
@@ -84,11 +45,11 @@ namespace LinkConverter.Webapi.Controllers
 
         #region DeepLinkToWebUrl
         /// <summary>
-        /// Deep linki Trendyol web url çevirir.
+        /// Deep linki Trendyol web url çevirir. Eğer ürün detayı veya arama değilse ana sayfaya olarak çeviri yapacaktır.
         /// </summary>
         /// <param name="service">Dependency injection tarafından kullanılır request için ihtiyaç yoktur</param>
         /// <param name="body">Dönüştürülecek deep linkin http body içerisinde Url ile gönderilen objedir</param>
-        /// <returns>Trendyol web url döner</returns>
+        /// <returns>Trendyol web url döner. Örn: https://www.trendyol.com/brand/name-p-1925865</returns>
         [HttpPost]
         [ActionName("DeepLinkToWebUrl")]
         public ActionResult<string> DeepLinkToWebUrl([FromServices] ILinkConverterService service, [FromBody] WebUrlToDeepLinkRequest body)
@@ -96,7 +57,7 @@ namespace LinkConverter.Webapi.Controllers
             return service.DeepLinkToWebUrl(body.Url);
         }
         /// <summary>
-        /// Deep linki Trendyol web url çevirir
+        /// Deep linki Trendyol web url çevirir. Eğer ürün detayı veya arama değilse ana sayfaya olarak çeviri yapacaktır. Diğer uçtan farklı olarak linki route'dan alır. İşlevsellik olarak farkları yoktur.
         /// </summary>
         /// <param name="service">Dependency injection tarafından kullanılır request için ihtiyaç yoktur</param>
         /// <param name="deeplink">Route ile çevrilecek olan deep link</param>
@@ -112,15 +73,15 @@ namespace LinkConverter.Webapi.Controllers
 
         #region History
         /// <summary>
-        /// Arayüzdende eklenen verilerin görüntülenmesi için eklenmiştir.
+        /// Arayüzdende eklenen verilerin görüntülenmesi için eklenmiştir. Fazlalık olarak eklediğim için dönen verilere max limit eklenmemiştir. 
         /// </summary>
         /// <param name="service"></param>
         /// <returns></returns>
         [HttpGet]
         [ActionName("GetAllHistory")]
-        public ActionResult<List<LinkConvertHistoryResponse>> GetAllHistory([FromServices] ILinkConverterService service)
+        public ActionResult<IEnumerable<LinkConvertHistoryResponse>> GetAllHistory([FromServices] ILinkConverterService service)
         {
-            return service.GetHistories().ToList();
+            return Ok(service.GetHistories());
         }
         #endregion
     }

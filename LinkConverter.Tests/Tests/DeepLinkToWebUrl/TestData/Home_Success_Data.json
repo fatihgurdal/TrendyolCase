@@ -1,0 +1,22 @@
+[
+  {
+    "RequestUrl": "ty://?Page=Favorites ",
+    "ResponseUrl": "https://www.trendyol.com"
+  },
+  {
+    "RequestUrl": "ty://?Page=Orders",
+    "ResponseUrl": "https://www.trendyol.com"
+  },
+  {
+    "RequestUrl": "ty://?Page=Basket",
+    "ResponseUrl": "https://www.trendyol.com"
+  },
+  {
+    "RequestUrl": "ty://?Page=Account",
+    "ResponseUrl": "https://www.trendyol.com"
+  },
+  {
+    "RequestUrl": "ty://?Page=Category",
+    "ResponseUrl": "https://www.trendyol.com"
+  }
+]

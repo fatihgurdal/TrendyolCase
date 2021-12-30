@@ -1,0 +1,22 @@
+﻿[
+  {
+    "RequestUrl": "ty://?Page=Search&Query=kasa",
+    "ResponseUrl": "https://www.trendyol.com/sr?q=laptop"
+  },
+  {
+    "RequestUrl": "ty://?Page=Search&Query=%C3%A7ayydanl%C4%B1k",
+    "ResponseUrl": "https://www.trendyol.com/sr?q=%C3%A7aydanl%C4%B1k"
+  },
+  {
+    "RequestUrl": "ty://?Page=Search&Query=ütü",
+    "ResponseUrl": "https://www.trendyol.com/sr?q=%C3%BCt%C3%BC"
+  },
+  {
+    "RequestUrl": "ty://?Page=Search&Query=şemsiye",
+    "ResponseUrl": "https://www.trendyol.com/sr?q=%C5%9Femsiye"
+  },
+  {
+    "RequestUrl": "ty://?Page=Search&Query=ağustos",
+    "ResponseUrl": "https://www.trendyol.com/sr?q=a%C4%9Fustos"
+  }
+]

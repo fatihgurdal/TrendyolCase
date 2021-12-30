@@ -2,11 +2,10 @@
 
 using Shouldly;
 
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 using Xunit;
+
 
 namespace LinkConverter.Tests.Tests.WebUrlToDeepLink
 {
@@ -36,7 +35,7 @@ namespace LinkConverter.Tests.Tests.WebUrlToDeepLink
         #endregion
 
         #region Fail
-        
+
         [Theory]
         [MemberData(nameof(Search_Success_Fail_Data))]
         public void Search_Success_Fail(ConvertModel model)

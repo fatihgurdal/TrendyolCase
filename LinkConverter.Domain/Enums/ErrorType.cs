@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LinkConverter.Domain.Enums
+﻿namespace LinkConverter.Domain.Enums
 {
     public enum ErrorType
     {

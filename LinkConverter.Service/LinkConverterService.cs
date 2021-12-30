@@ -6,8 +6,13 @@ using LinkConverter.Domain.Repository;
 using LinkConverter.Domain.Service;
 using LinkConverter.Service.Converters;
 
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace LinkConverter.Service
 {
@@ -19,6 +24,7 @@ namespace LinkConverter.Service
         {
             ConverterHistoryRepository = converterHistoryRepository;
         }
+
         public string WebUrlToDeepLink(string url)
         {
             var productWebUrlConverter = new ProductWebUrlConverter(
@@ -37,8 +43,8 @@ namespace LinkConverter.Service
         public string DeepLinkToWebUrl(string deeplink)
         {
             var productWebUrlConverter = new ProductDeepLinkConverter(
-                                                new SearchDeepLinkConverter(
-                                                    new HomeDeepLinkConverter(null)));
+                                               new SearchDeepLinkConverter(
+                                                   new HomeDeepLinkConverter(null)));
 
             var response = productWebUrlConverter.ConvertUrl(deeplink);
 
@@ -48,12 +54,20 @@ namespace LinkConverter.Service
                 return response;
             }
             else throw new BadRequestException("Deep link convert fail.", "", ErrorType.Critical);
-
         }
 
         public IEnumerable<LinkConvertHistoryResponse> GetHistories()
         {
             return ConverterHistoryRepository.Get(x => true).Select(x => new LinkConvertHistoryResponse(x));
+        }
+
+        public void Clear()
+        {
+            if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "UnitTest")
+            {
+                ConverterHistoryRepository.Clear();
+
+            }
         }
     }
 }

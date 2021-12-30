@@ -1,0 +1,22 @@
+[
+  {
+    "RequestUrl": "ty://?Page=Product&ContentId=0",
+    "ResponseUrl": "https://www.trendyol.com/brand/name-p-0"
+  },
+  {
+    "RequestUrl": "ty://?Page=Product&ContentId=122008019&CampaignId=0&MerchantId=114621",
+    "ResponseUrl": "https://www.trendyol.com/brand/name-p-122008019?boutiqueId=0&merchantId=114621"
+  },
+  {
+    "RequestUrl": "ty://?Page=Product&ContentId=1925865&CampaignId=0 ",
+    "ResponseUrl": "https://www.trendyol.com/brand/name-p-1925865?boutiqueId=0"
+  },
+  {
+    "RequestUrl": "ty://?Page=Product&ContentId=1925865&MerchantId=0",
+    "ResponseUrl": "https://www.trendyol.com/brand/name-p-1925865?merchantId=0"
+  },
+  {
+    "RequestUrl": "ty://?Page=Product&ContentId=4565434&MerchantId=0 ",
+    "ResponseUrl": "https://www.trendyol.com/brand/name-p-4565434?boutiqueId=0"
+  }
+]

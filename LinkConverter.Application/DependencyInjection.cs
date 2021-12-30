@@ -4,17 +4,13 @@ using LinkConverter.Domain.Models.Request;
 using LinkConverter.Domain.Repository;
 using LinkConverter.Domain.Service;
 using LinkConverter.Domain.Validations;
-using LinkConverter.Repository.Postgresql.Context;
-using LinkConverter.Repository.Postgresql.Repositories;
+using LinkConverter.Repository.EFPostgresql.Context;
+using LinkConverter.Repository.EFPostgresql.Repositories;
 using LinkConverter.Service;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace LinkConverter.Application
 {
@@ -24,11 +20,6 @@ namespace LinkConverter.Application
         {
             string connectionString = configuration.GetConnectionString("LinkConverterPostgresqlConnection");
             services.AddDbContext<LinkConverterContext>(x => x.UseNpgsql(connectionString));
-
-            #region Test
-            services.AddScoped<ITestService, TestService>();
-            services.AddScoped<ITestRepository, TestRepository>();
-            #endregion
 
             #region LinkConverter
             services.AddScoped<ILinkConverterService, LinkConverterService>();

@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 using System;
 
@@ -25,7 +24,7 @@ namespace LinkConverter.Webapi.Filters
             {
                 TraceId = Guid.NewGuid()
             };
-            if (context.Exception is BaseExcepiton ex)
+            if (context.Exception is BaseException ex)
             {
                 exceptionModel.Message = ex.Message;
                 exceptionModel.Detail = ex.Detail;
@@ -44,7 +43,7 @@ namespace LinkConverter.Webapi.Filters
 
                 context.HttpContext.Response.StatusCode = 500;
 
-
+                //TODO: En son ILogger inject edilecek
                 //logger.LogError(context.Exception, "unhandled error");
             }
 
